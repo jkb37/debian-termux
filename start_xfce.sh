@@ -29,11 +29,20 @@ proot-distro login debian --shared-tmp -- /bin/bash -c "
     sudo service dbus start
     
     # Start sesji jako jacob
-    su - jacob -c '
+su - jacob -c "
         export DISPLAY=:0
         export PULSE_SERVER=127.0.0.1
         export XDG_RUNTIME_DIR=/tmp
         export LIBGL_ALWAYS_SOFTWARE=1
-        dbus-launch --exit-with-session xfce4-session
-    '
-"
+        
+        # Wyłączamy sprawdzanie sesji przez menedżera okien
+        export SESSION_MANAGER=''
+
+        dbus-launch --exit-with-session bash -c '
+            xfsettingsd &
+            xfwm4 --replace & 
+            xfce4-panel & 
+            xfdesktop & 
+            wait
+        '
+    "
