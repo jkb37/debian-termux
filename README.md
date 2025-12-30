@@ -5,10 +5,10 @@ The "Not connected" problem:
 1. Enable Developer options in settings
 2. Enable wireless debugging
 3. Set Suspend cached app processes off 
-4. Get "Brevent" app fromm play store
+4. Get "Brevent" app from play store
 5. Paste this line into the exec: "settings put global settings_enable_monitor_phantom_procs false"
 6. Set power plan to maximum performance
-7. Set Termux and Termux X11 battery optimizations off 
+7. Set Termux and Termux X11 apps battery optimizations off 
 
 The "No sound" problem:
 1. Set the line "exit-idle-time= -1"  in  /data/data/com.termux/files/usr/etc/pulse/daemon.conf
