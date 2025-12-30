@@ -28,21 +28,22 @@ proot-distro login debian --shared-tmp -- /bin/bash -c "
     # Start bazy komunikacji systemowej
     sudo service dbus start
     
-    # Start sesji jako jacob
-su - jacob -c "
+    # Start sesji jako jacob (używamy pojedynczego cudzysłowu dla su)
+    su - jacob -c '
         export DISPLAY=:0
         export PULSE_SERVER=127.0.0.1
         export XDG_RUNTIME_DIR=/tmp
         export LIBGL_ALWAYS_SOFTWARE=1
         
         # Wyłączamy sprawdzanie sesji przez menedżera okien
-        export SESSION_MANAGER=''
+        export SESSION_MANAGER=\"\"
 
-        dbus-launch --exit-with-session bash -c '
+        dbus-launch --exit-with-session bash -c \"
             xfsettingsd &
             xfwm4 --replace & 
             xfce4-panel & 
             xfdesktop & 
             wait
-        '
-    "
+        \"
+    '
+"
